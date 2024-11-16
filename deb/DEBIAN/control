@@ -1,0 +1,7 @@
+Package: cos-func
+Version: 1.0
+Section: utils
+Priority: optional
+Architecture: any
+Maintainer: Lafenko Iryna lafenkoirina5@gmail.com
+Description: A program to calculate the cos function
