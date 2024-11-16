@@ -1,12 +1,12 @@
-name: Build tar.gz file
+name: Build deb package
 
 on:
   push:
     branches:
-      - branchAutoMake
+      - branchAutoPackage
   pull_request:
     branches:
-      - branchAutoMake
+      - branchAutoPackage
 
 jobs:
   build:
@@ -14,7 +14,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: AutoMake work
+    - name: AutoPackage build deb
       run: |
-        ./configure
-        make dist
+        autoreconf --install
+        ./configure --prefix=/
+        make install DESTDIR=$(pwd)
+        dpkg-deb --build deb
