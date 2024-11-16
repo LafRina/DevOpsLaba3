@@ -1,0 +1,19 @@
+name: Build Program
+
+on:
+  push:
+    branches:
+      - branchMake
+  pull_request:
+    branches:
+      - branchMake
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Makefile work
+      run: |
+        make
