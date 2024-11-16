@@ -16,4 +16,5 @@ jobs:
     - uses: actions/checkout@v2
     - name: AutoTest
       run: |
+        ./configure
         make check
