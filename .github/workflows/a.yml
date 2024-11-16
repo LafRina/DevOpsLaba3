@@ -17,4 +17,6 @@ jobs:
     - name: AutoTest
       run: |
         ./configure
+        make clean
+        make
         make check
