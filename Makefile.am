@@ -1,5 +1,7 @@
 bin_PROGRAMS = cos_func
 cos_func_SOURCES = main.cpp Func.cpp Func.h
+check_PROGRAMS = cos_func_test
+cos_func_test_SOURCES = test.cpp Func.cpp Func.h
 
 install-exec-hook:
 	mkdir -p $(DESTDIR)/deb/DEBIAN
