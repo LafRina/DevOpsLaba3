@@ -87,7 +87,7 @@ NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
 bin_PROGRAMS = cos_func$(EXEEXT)
-check_PROGRAMS = cos_func_test$(EXEEXT)
+check_PROGRAMS = test_http_server$(EXEEXT)
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
@@ -105,9 +105,9 @@ PROGRAMS = $(bin_PROGRAMS)
 am_cos_func_OBJECTS = main.$(OBJEXT) Func.$(OBJEXT)
 cos_func_OBJECTS = $(am_cos_func_OBJECTS)
 cos_func_LDADD = $(LDADD)
-am_cos_func_test_OBJECTS = test.$(OBJEXT) Func.$(OBJEXT)
-cos_func_test_OBJECTS = $(am_cos_func_test_OBJECTS)
-cos_func_test_LDADD = $(LDADD)
+am_test_http_server_OBJECTS = testTest.$(OBJEXT) Func.$(OBJEXT)
+test_http_server_OBJECTS = $(am_test_http_server_OBJECTS)
+test_http_server_LDADD = $(LDADD)
 AM_V_P = $(am__v_P_$(V))
 am__v_P_ = $(am__v_P_$(AM_DEFAULT_VERBOSITY))
 am__v_P_0 = false
@@ -124,7 +124,7 @@ DEFAULT_INCLUDES = -I.
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = ./$(DEPDIR)/Func.Po ./$(DEPDIR)/main.Po \
-	./$(DEPDIR)/test.Po
+	./$(DEPDIR)/testTest.Po
 am__mv = mv -f
 CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
@@ -151,8 +151,8 @@ AM_V_CCLD = $(am__v_CCLD_$(V))
 am__v_CCLD_ = $(am__v_CCLD_$(AM_DEFAULT_VERBOSITY))
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(cos_func_SOURCES) $(cos_func_test_SOURCES)
-DIST_SOURCES = $(cos_func_SOURCES) $(cos_func_test_SOURCES)
+SOURCES = $(cos_func_SOURCES) $(test_http_server_SOURCES)
+DIST_SOURCES = $(cos_func_SOURCES) $(test_http_server_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -272,7 +272,7 @@ mandir = ${datarootdir}/man
 mkdir_p = $(MKDIR_P)
 oldincludedir = /usr/include
 pdfdir = ${docdir}
-prefix = /
+prefix = /usr/local
 program_transform_name = s,x,x,
 psdir = ${docdir}
 runstatedir = ${localstatedir}/run
@@ -286,6 +286,7 @@ top_builddir = .
 top_srcdir = .
 cos_func_SOURCES = main.cpp Func.cpp Func.h
 cos_func_test_SOURCES = test.cpp Func.cpp Func.h
+test_http_server_SOURCES = testTest.cpp Func.cpp Func.h
 all: all-am
 
 .SUFFIXES:
@@ -373,9 +374,9 @@ cos_func$(EXEEXT): $(cos_func_OBJECTS) $(cos_func_DEPENDENCIES) $(EXTRA_cos_func
 	@rm -f cos_func$(EXEEXT)
 	$(AM_V_CXXLD)$(CXXLINK) $(cos_func_OBJECTS) $(cos_func_LDADD) $(LIBS)
 
-cos_func_test$(EXEEXT): $(cos_func_test_OBJECTS) $(cos_func_test_DEPENDENCIES) $(EXTRA_cos_func_test_DEPENDENCIES) 
-	@rm -f cos_func_test$(EXEEXT)
-	$(AM_V_CXXLD)$(CXXLINK) $(cos_func_test_OBJECTS) $(cos_func_test_LDADD) $(LIBS)
+test_http_server$(EXEEXT): $(test_http_server_OBJECTS) $(test_http_server_DEPENDENCIES) $(EXTRA_test_http_server_DEPENDENCIES) 
+	@rm -f test_http_server$(EXEEXT)
+	$(AM_V_CXXLD)$(CXXLINK) $(test_http_server_OBJECTS) $(test_http_server_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -385,7 +386,7 @@ distclean-compile:
 
 include ./$(DEPDIR)/Func.Po # am--include-marker
 include ./$(DEPDIR)/main.Po # am--include-marker
-include ./$(DEPDIR)/test.Po # am--include-marker
+include ./$(DEPDIR)/testTest.Po # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -684,7 +685,7 @@ distclean: distclean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
 		-rm -f ./$(DEPDIR)/Func.Po
 	-rm -f ./$(DEPDIR)/main.Po
-	-rm -f ./$(DEPDIR)/test.Po
+	-rm -f ./$(DEPDIR)/testTest.Po
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -735,7 +736,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -rf $(top_srcdir)/autom4te.cache
 		-rm -f ./$(DEPDIR)/Func.Po
 	-rm -f ./$(DEPDIR)/main.Po
-	-rm -f ./$(DEPDIR)/test.Po
+	-rm -f ./$(DEPDIR)/testTest.Po
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
@@ -777,13 +778,13 @@ uninstall-am: uninstall-binPROGRAMS
 
 install-exec-hook:
 	mkdir -p $(DESTDIR)/deb/DEBIAN
-	echo "Package: cos-func" > $(DESTDIR)/deb/DEBIAN/control
+	echo "Package: http-server" > $(DESTDIR)/deb/DEBIAN/control
 	echo "Version: 1.0" >> $(DESTDIR)/deb/DEBIAN/control
 	echo "Section: utils" >> $(DESTDIR)/deb/DEBIAN/control
 	echo "Priority: optional" >> $(DESTDIR)/deb/DEBIAN/control
 	echo "Architecture: any" >> $(DESTDIR)/deb/DEBIAN/control
 	echo "Maintainer: Lafenko Iryna lafenkoirina5@gmail.com" >> $(DESTDIR)/deb/DEBIAN/control
-	echo "Description: A program to calculate the cos function" >> $(DESTDIR)/deb/DEBIAN/control
+	echo "Description: An HTTP server to calculate and sort cosine values" >> $(DESTDIR)/deb/DEBIAN/control
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
