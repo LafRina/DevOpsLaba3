@@ -20,10 +20,10 @@ jobs:
 
       # Log in to DockerHub
       - name: Log in to DockerHub
-    env:
-      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }} 
-      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }} 
-    run: echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }} 
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }} 
+        run: echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin
 
       # Build the Docker image
       - name: Build Docker image
@@ -34,3 +34,4 @@ jobs:
       - name: Push Docker image
         run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/http-server-project:latest
+
