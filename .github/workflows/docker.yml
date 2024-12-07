@@ -39,10 +39,3 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/http-server-project:latest
 
-      # Create and push manifest
-      - name: Create and Push Manifest
-        run: |
-          docker manifest create ${{ secrets.DOCKER_USERNAME }}/http-server-project:latest \
-            --amend ${{ secrets.DOCKER_USERNAME }}/http-server-project:amd64 \
-            --amend ${{ secrets.DOCKER_USERNAME }}/http-server-project:arm64
-          docker manifest push ${{ secrets.DOCKER_USERNAME }}/http-server-project:latest
