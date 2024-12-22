@@ -76,7 +76,7 @@ int CreateHTTPserver() {
             // Compute cosine values with simulated load
             auto start = std::chrono::high_resolution_clock::now();
             
-	    for (double i=1.0; i<100.0; i+=0.1){
+	    for (double i=1.0; i<100000.0; i+=0.1){
 		    func.compute(i, 100);
 	    }
 	    for (int i = 0; i < 500; ++i) {
